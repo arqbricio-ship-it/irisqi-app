@@ -1,101 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IrisQI – Análise da Íris por IA</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header>
-  <h1>IrisQI – Análise da Íris com IA</h1>
-  <p>Envie uma foto da íris e obtenha um relatório completo e filosófico.</p>
-</header>
-
-<section class="upload-area">
-  <h2>1. Envie a foto da íris</h2>
-  <input type="file" id="irisInput" accept="image/*">
-  <img id="preview" />
-</section>
-
-<section class="birth-section">
-  <h2>2. Informe sua data de nascimento</h2>
-  <input type="date" id="birthInput">
-</section>
-
-<button id="analyzeBtn">Analisar</button>
-
-<section id="result" class="hidden">
-  <h2>Resultado da Análise</h2>
-  <p id="analysisText"></p>
-</section>
-
-<script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IrisQI – Análise Completa Oriente & IA</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>IRISQI – Análise da Íris com IA Oriental</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <header>
+        <h1>IRISQI – Medicina Tradicional Chinesa + IA</h1>
+        <p>Análise avançada da íris com tecnologia GPT-4o-mini-vision</p>
+    </header>
 
-<header>
-    <h1>IrisQI – Inteligência Oriental Aplicada à Íris</h1>
-    <p>Diagnóstico energético, horóscopo chinês e mensagens filosóficas.</p>
-</header>
+    <main>
+        <div class="card">
 
-<section class="upload-area">
-    <h2>1. Envie a foto da íris</h2>
-    <input type="file" id="irisInput" accept="image/*">
-    <img id="preview">
-</section>
+            <h2>📸 Envie a foto da sua íris</h2>
+            <input type="file" id="irisInput" accept="image/*">
 
-<section class="data-section">
-    <h2>2. Data de nascimento</h2>
-    <input type="date" id="birthInput">
-</section>
+            <h2>📅 Data de nascimento</h2>
+            <input type="date" id="birthdateInput" placeholder="Digite sua data de nascimento">
 
-<section class="questions-section">
-    <h2>3. Informações adicionais (opcional)</h2>
+            <button id="analyzeBtn">🔍 Analisar Íris com IA</button>
 
-    <label>Comorbidades:</label>
-    <textarea id="comorb"></textarea>
+            <div id="loading" class="hidden">⏳ Processando imagem e gerando relatório oriental...</div>
 
-    <label>Emoções predominantes:</label>
-    <textarea id="emotions"></textarea>
+            <h2>📜 Relatório Completo</h2>
+            <div id="result"></div>
+        </div>
+    </main>
 
-    <label>Hábitos de vida:</label>
-    <textarea id="habits"></textarea>
-</section>
+    <footer>
+        <p>IRISQI © 2025 – Inteligência Oriental Aplicada ao Bem-Estar</p>
+    </footer>
 
-<button id="analyzeBtn">Gerar Relatório Completo</button>
+    <!-- ===== JAVASCRIPT PRINCIPAL ===== -->
+    <script>
+        const btn = document.getElementById("analyzeBtn");
+        const result = document.getElementById("result");
+        const loading = document.getElementById("loading");
 
-<section id="result" class="hidden">
-    <h2>Relatório Oriente + IA</h2>
+        async function analyzeIris() {
+            const file = document.getElementById("irisInput").files[0];
+            const birthdate = document.getElementById("birthdateInput").value;
 
-    <h3>🔍 Análise da Íris (IA)</h3>
-    <p id="irisAnalysis"></p>
+            if (!file) {
+                alert("Envie uma foto da sua íris.");
+                return;
+            }
 
-    <h3>🐉 Horóscopo Chinês</h3>
-    <p id="horoscope"></p>
+            if (!birthdate) {
+                alert("Digite sua data de nascimento.");
+                return;
+            }
 
-    <h3>🧧 Integração dos 5 Elementos</h3>
-    <p id="elements"></p>
+            loading.classList.remove("hidden");
+            result.innerHTML = "";
 
-    <h3>🧘 Recomendações de Bem-Estar (MTC)</h3>
-    <p id="recommendations"></p>
+            const reader = new FileReader();
+            reader.onload = async function () {
+                const base64Image = reader.result.split(",")[1];
 
-    <h3>📜 Mensagem Filosófica Chinesa</h3>
-    <p id="quote"></p>
-</section>
+                const response = await fetch("https://api.openai.com/v1/responses", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer SUA_API_KEY_AQUI"
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4o-mini-vision",
+                        input: [
+                            {
+                                role: "user",
+                                content: [
+                                    { type: "input_text", text: `Data de nascimento: ${birthdate}` },
+                                    { type: "input_image", image_url: `data:image/jpeg;base64,${base64Image}` },
+                                    { type: "input_text", text: `
+                                        Analise esta íris usando Medicina Tradicional Chinesa (MTC).
+                                        Gere:
 
-<script src="script_full.js"></script>
+                                        - Diagnóstico energético completo
+                                        - Yin/Yang predominante
+                                        - Elemento da MTC (Madeira, Fogo, Terra, Metal, Água)
+                                        - Pontos de desequilíbrio
+                                        - Sugestões: chás, bálsamos, alimentação
+                                        - Técnicas chinesas adequadas: Tui Na, Anma, Do-in
+                                        - Pontos de acupuntura relevantes
+                                        - Recomendações de práticas: Tai Chi, Chi Kung, respiração
+                                        - Horóscopo chinês baseado na data fornecida
+                                        - Mensagem final de filósofos chineses (Lao Tzu, Confúcio, Sun Tzu)
+                                        - Formatar em estilo pergaminho antigo
+
+                                        Não use Tarot. Apenas filosofia chinesa.
+                                    ` }
+                                ]
+                            }
+                        ]
+                    })
+                });
+
+                const data = await response.json();
+                loading.classList.add("hidden");
+
+                result.innerHTML = `
+                    <div class="pergaminho">
+                        ${data.output_text || "Erro ao gerar relatório"}
+                    </div>
+                `;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        btn.addEventListener("click", analyzeIris);
+    </script>
 
 </body>
 </html>
+
