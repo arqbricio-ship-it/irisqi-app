@@ -1,63 +1,69 @@
 body {
-    background: #111;
-    color: white;
+    background: #1a0000 url('https://i.imgur.com/2V5sD8r.png') center/cover fixed;
     font-family: "Times New Roman", serif;
+    color: #f2d9a6;
     margin: 0;
     padding: 0;
-    text-align: center;
 }
 
 header {
-    background: linear-gradient(90deg, #7a0000, #d4a017);
-    padding: 20px;
-    color: #fff;
+    text-align: center;
+    padding: 30px 10px;
+    background: linear-gradient(180deg, #660000, #330000);
+    border-bottom: 3px solid #d4af37;
+}
+
+h1 {
+    color: #d4af37;
+    font-size: 34px;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.sub {
+    margin-top: -10px;
+    color: #fff2cc;
+    font-size: 16px;
+    font-style: italic;
 }
 
 .card {
-    background: rgba(0,0,0,0.6);
-    border: 2px solid #d4a017;
+    background: rgba(51, 0, 0, 0.7);
+    border: 2px solid #d4af37;
     border-radius: 12px;
-    width: 90%;
-    max-width: 700px;
-    margin: 30px auto;
     padding: 20px;
-}
-
-input, button {
-    width: 90%;
-    padding: 12px;
-    margin: 10px 0;
-    font-size: 18px;
+    margin: 20px;
 }
 
 button {
-    background: #d4a017;
-    border: none;
+    background: #b30000;
+    border: 2px solid #d4af37;
+    color: gold;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: bold;
-    border-radius: 8px;
+    width: 100%;
 }
 
 button:hover {
-    background: #ffcc33;
+    background: #cc0000;
 }
 
-.pergaminho {
-    background: url('https://i.imgur.com/8uNqQdw.png');
-    background-size: cover;
-    padding: 25px;
-    border-radius: 12px;
-    color: #2b1d00;
-    font-size: 18px;
-    text-align: left;
-    border: 1px solid #b89b5e;
+input[type="file"], input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    background: #330000;
+    color: #fff2cc;
+    border: 2px solid #d4af37;
+    border-radius: 10px;
 }
 
-.hidden {
-    display: none;
+textarea {
+    width: 100%;
+    background: #0d0d0d;
+    color: #e6c57c;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #d4af37;
 }
 
-footer {
-    padding: 20px;
-    color: #aaa;
-}
