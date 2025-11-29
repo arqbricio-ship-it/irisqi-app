@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IrisQI – Análise da Íris por IA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>IrisQI – Análise da Íris com IA</h1>
+  <p>Envie uma foto da íris e obtenha um relatório completo e filosófico.</p>
+</header>
+
+<section class="upload-area">
+  <h2>1. Envie a foto da íris</h2>
+  <input type="file" id="irisInput" accept="image/*">
+  <img id="preview" />
+</section>
+
+<section class="birth-section">
+  <h2>2. Informe sua data de nascimento</h2>
+  <input type="date" id="birthInput">
+</section>
+
+<button id="analyzeBtn">Analisar</button>
+
+<section id="result" class="hidden">
+  <h2>Resultado da Análise</h2>
+  <p id="analysisText"></p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IrisQI – Análise Completa Oriente & IA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>IrisQI – Inteligência Oriental Aplicada à Íris</h1>
+    <p>Diagnóstico energético, horóscopo chinês e mensagens filosóficas.</p>
+</header>
+
+<section class="upload-area">
+    <h2>1. Envie a foto da íris</h2>
+    <input type="file" id="irisInput" accept="image/*">
+    <img id="preview">
+</section>
+
+<section class="data-section">
+    <h2>2. Data de nascimento</h2>
+    <input type="date" id="birthInput">
+</section>
+
+<section class="questions-section">
+    <h2>3. Informações adicionais (opcional)</h2>
+
+    <label>Comorbidades:</label>
+    <textarea id="comorb"></textarea>
+
+    <label>Emoções predominantes:</label>
+    <textarea id="emotions"></textarea>
+
+    <label>Hábitos de vida:</label>
+    <textarea id="habits"></textarea>
+</section>
+
+<button id="analyzeBtn">Gerar Relatório Completo</button>
+
+<section id="result" class="hidden">
+    <h2>Relatório Oriente + IA</h2>
+
+    <h3>🔍 Análise da Íris (IA)</h3>
+    <p id="irisAnalysis"></p>
+
+    <h3>🐉 Horóscopo Chinês</h3>
+    <p id="horoscope"></p>
+
+    <h3>🧧 Integração dos 5 Elementos</h3>
+    <p id="elements"></p>
+
+    <h3>🧘 Recomendações de Bem-Estar (MTC)</h3>
+    <p id="recommendations"></p>
+
+    <h3>📜 Mensagem Filosófica Chinesa</h3>
+    <p id="quote"></p>
+</section>
+
+<script src="script_full.js"></script>
+
+</body>
+</html>
