@@ -1,0 +1,63 @@
+body {
+    background: #111;
+    color: white;
+    font-family: "Times New Roman", serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #d4a017);
+    padding: 20px;
+    color: #fff;
+}
+
+.card {
+    background: rgba(0,0,0,0.6);
+    border: 2px solid #d4a017;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+input, button {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+button {
+    background: #d4a017;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+button:hover {
+    background: #ffcc33;
+}
+
+.pergaminho {
+    background: url('https://i.imgur.com/8uNqQdw.png');
+    background-size: cover;
+    padding: 25px;
+    border-radius: 12px;
+    color: #2b1d00;
+    font-size: 18px;
+    text-align: left;
+    border: 1px solid #b89b5e;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    padding: 20px;
+    color: #aaa;
+}
