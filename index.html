@@ -99,6 +99,52 @@ function toBase64(file) {
     });
 }
 </script>
+    <!-- PLAYER DE MÚSICA CHINESA (DEMO) -->
+<div class="music-player">
+    <h3>Música Tradicional Chinesa</h3>
+
+    <select id="musicSelect">
+        <option value="assets/whispers-of-the-bamboo-forest-345102.mp3">
+            🎋 Whispers of the Bamboo Forest
+        </option>
+
+        <option value="assets/mountain-spring-2-min-edit-chinese-music-410475.mp3">
+            ⛰️ Mountain Spring – Chinese Music
+        </option>
+
+        <option value="assets/echoes-of-the-mountains-1-min-edit-uplifting-chinese-music-365102.mp3">
+            🌄 Echoes of the Mountains – Uplifting Chinese Music
+        </option>
+    </select>
+
+    <div class="music-buttons">
+        <button onclick="playMusic()">▶ Tocar</button>
+        <button onclick="pauseMusic()">⏸ Pausar</button>
+        <button onclick="stopMusic()">⏹ Parar</button>
+    </div>
+
+    <audio id="audioPlayer" loop></audio>
+</div>
+
+<script>
+    const player = document.getElementById('audioPlayer');
+    const selector = document.getElementById('musicSelect');
+
+    function playMusic() {
+        player.src = selector.value;
+        player.play();
+    }
+
+    function pauseMusic() {
+        player.pause();
+    }
+
+    function stopMusic() {
+        player.pause();
+        player.currentTime = 0;
+    }
+</script>
+
 </body>
 </html>
 
