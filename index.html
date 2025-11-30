@@ -1,154 +1,64 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>IRISQI – Análise Oriental por IA</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css" />
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
-
 <header>
-    <h1>🐉 IRISQI – Bem-Estar Oriental por IA</h1>
-    <p class="sub">Análise da Íris + Medicina Tradicional Chinesa + Horóscopo Chinês</p>
+<h1>🐉 IRISQI – Bem-Estar Oriental por IA</h1>
+<p class="sub">Análise da Íris + Medicina Tradicional Chinesa + Horóscopo Chinês</p>
 </header>
 
+
+<main>
 <section class="card">
-    <h2>📸 Envie sua Foto da Íris</h2>
-    <input type="file" id="irisInput" accept="image/*">
-    <button onclick="processarIris()">Analisar Íris</button>
-</section>
-
-<section class="card">
-    <h2>📅 Data de Nascimento (para Horóscopo Chinês)</h2>
-    <input type="date" id="birthdate">
-</section>
-
-<section class="card">
-    <h2>📜 Resultado</h2>
-    <textarea id="resultado" rows="20"></textarea>
-</section>
-
-<script>
-async function processarIris() {
-    const file = document.getElementById("irisInput").files[0];
-    const birthdate = document.getElementById("birthdate").value;
-
-    if (!file) {
-        alert("Envie uma imagem da íris.");
-        return;
-    }
-
-    const base64 = await toBase64(file);
-
-    const prompt = `
-Você é uma IA especialista em Medicina Tradicional Chinesa e Irisdiagnose Oriental.
-Analise tecnicamente a ÍRIS enviada e gere um relatório COMPLETO incluindo:
-
-1. **Diagnóstico energético detalhado**
-2. **Yin/Yang**
-3. **Elemento predominante da MTC** (Madeira, Fogo, Terra, Metal, Água)
-4. **Pontos de acupuntura recomendados**
-5. **Massoterapia e práticas orientais**
-6. **Chás e bálsamos**
-7. **Sinais observáveis na íris e significados**
-8. **Resumo final estético em estilo pergaminho**
-
-➤ Em seguida, com base na data de nascimento (${birthdate}), gere o HORÓSCOPO CHINÊS COMPLETO:
-
-- Animal do ano
-- Elemento regente
-- Personalidade detalhada
-- Compatibilidades amorosas e sociais
-- Pontos de atenção
-- Energia anual
-- Conselhos orientais
-`;
-
-    const resposta = await axios.post(
-        "https://api.openai.com/v1/chat/completions",
-        {
-            model: "gpt-4o-mini-vision",
-            messages: [
-                {
-                    role: "user",
-                    content: [
-                        { type: "input_image", image_url: base64 },
-                        { type: "text", text: prompt }
-                    ]
-                }
-            ]
-        },
-        {
-            headers: { "Authorization": "Bearer SUA_API_KEY" }
-        }
-    );
-
-    document.getElementById("resultado").value =
-        resposta.data.choices[0].message.content;
-}
-
-function toBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
-}
-</script>
-    <!-- PLAYER DE MÚSICA CHINESA (DEMO) -->
-<div class="music-player">
-    <h3>Música Tradicional Chinesa</h3>
-
-    <select id="musicSelect">
-        <option value="assets/whispers-of-the-bamboo-forest-345102.mp3">
-            🎋 Whispers of the Bamboo Forest
-        </option>
-
-        <option value="assets/mountain-spring-2-min-edit-chinese-music-410475.mp3">
-            ⛰️ Mountain Spring – Chinese Music
-        </option>
-
-        <option value="assets/echoes-of-the-mountains-1-min-edit-uplifting-chinese-music-365102.mp3">
-            🌄 Echoes of the Mountains – Uplifting Chinese Music
-        </option>
-    </select>
-
-    <div class="music-buttons">
-        <button onclick="playMusic()">▶ Tocar</button>
-        <button onclick="pauseMusic()">⏸ Pausar</button>
-        <button onclick="stopMusic()">⏹ Parar</button>
-    </div>
-
-    <audio id="audioPlayer" loop></audio>
+<h2>📸 Envie sua Foto da Íris</h2>
+<input type="file" id="irisInput" accept="image/*" />
+<img id="preview" alt="Pré-visualização da íris" style="display:none; max-width:240px; margin-top:12px; border-radius:10px; border:2px solid rgba(212,175,55,0.7)" />
+<div style="margin-top:12px;">
+<button id="analyzeBtn">Analisar Íris</button>
 </div>
+</section>
 
-<script>
-    const player = document.getElementById('audioPlayer');
-    const selector = document.getElementById('musicSelect');
 
-    function playMusic() {
-        player.src = selector.value;
-        player.play();
-    }
+<section class="card">
+<h2>📅 Data de Nascimento (para Horóscopo Chinês)</h2>
+<input type="date" id="birthInput" />
 
-    function pauseMusic() {
-        player.pause();
-    }
 
-    function stopMusic() {
-        player.pause();
-        player.currentTime = 0;
-    }
-</script>
-    </body>
+<div style="margin-top:12px; text-align:left; max-width:700px; margin-left:auto; margin-right:auto;">
+<label for="comorb">Comorbidades (opcional)</label>
+<input type="text" id="comorb" placeholder="Ex.: hipertensão, diabetes" />
+
+
+<label for="emotions">Estado emocional (opcional)</label>
+<input type="text" id="emotions" placeholder="Ex.: estressado, ansioso" />
+
+
+<label for="habits">Hábitos (opcional)</label>
+<input type="text" id="habits" placeholder="Ex.: corrida, sono irregular" />
+</div>
+</section>
+
+
+<section class="card">
+<h2>📜 Resultado</h2>
+<div id="result" class="hidden">
+<h3>🔎 Análise da Íris</h3>
+<div id="irisAnalysis">—</div>
+
+
+<h3>♒ Horóscopo Chinês</h3>
+<div id="horoscope">—</div>
+
+
+<h3>五行 — Elemento Predominante</h3>
+<div id="elements">—</div>
+
+
 </html>
-
-
-</body>
-</html>
-
 
