@@ -69,4 +69,8 @@ input[type="file"], input[type="date"], input[type="text"] {
 padding: 12px;
 border-radius: 10px;
 border: 2px solid var(--gold);
+background: #2e0a0a;
+color: #f5e6c5;
+width: 100%;
+margin: 10px 0;
 }
